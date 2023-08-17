@@ -17,12 +17,13 @@ $client = new SoapClient(null, $options);
 try {
     // Invoca o método da API SOAP com o conteúdo XML e método específico
     $response = $client->__doRequest($xmlContent, $endpoint, $method, SOAP_1_1, 0);
-    $json_data = json_encode($response, JSON_PARTIAL_OUTPUT_ON_ERROR);
-    echo $json_data;
+    $xmlObject = simplexml_load_string($response);
+    $result = $xmlObject->children('soap', true)->children('ans', true)->autorizacaoProcedimentoWS;
+    $jsonString = json_encode($result, JSON_PRETTY_PRINT);
+    echo $jsonString;
 
-    // Processa a resposta da API
-    print_r($response);
 } catch (SoapFault $e) {
     echo 'Erro na requisição SOAP: ' . $e->getMessage();
+
 }
 ?>
