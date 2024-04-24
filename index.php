@@ -27,6 +27,8 @@ try {
         $noh = 'autorizacaoProcedimentoWS';
     } elseif ($method == 'tissCancelaGuia_Operation') {
         $noh = 'reciboCancelaGuiaWS';
+    } elseif ($method == 'tissVerificaElegibilidade_Operation') {
+        $noh = 'respostaElegibilidadeWS';
     } else {
         $arr = array('status' => false, 'method' => 'metodo nao previsto');
         echo json_encode($arr);
