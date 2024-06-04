@@ -54,9 +54,9 @@ try {
     }
 
     if ($verSoap == '1') {
-        $xmlObject = simplexml_load_string($response);
-    } else {
         $xmlObject = simplexml_load_string($response, 'SimpleXMLElement', 0, 'http://schemas.xmlsoap.org/soap/envelope/');
+    } else {
+        $xmlObject = simplexml_load_string($response);
     }
     
     if (!$xmlObject) {
